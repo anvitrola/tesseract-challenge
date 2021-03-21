@@ -1,0 +1,57 @@
+.container{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+.team__list {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    list-style: none;
+    padding: 0;
+}
+.team__member{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 12%;
+    width: 100%;
+}
+.team__card{
+    align-items: center;
+    border: 1px solid var(--cinza-claro);
+    border-radius: 3px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    width: 270px;
+    padding: 1rem;
+}
+.team__img{
+    border-radius: 50%;
+    width: 200px;
+}
+.team__name{
+    color: var(--preto);
+    margin: 3% 0;
+}
+.team__login{
+    color: var(--cinza-escuro);
+    margin: 3%;
+}
+.team__followers, .team__repos, .team__date{
+    font-size: .9rem;
+    color: var(--cinza-escuro);
+    margin-bottom: 2%;
+}
+.team__card:hover{
+    background-color: var(--cinza-claro);
+    padding: 1.5rem;
+    transition: .3s all;
+}
+@media screen and (min-width: 768px) {
+    .team__list{
+        grid-template-columns: auto auto auto;
+        grid-gap: 1em;
+    }
+}

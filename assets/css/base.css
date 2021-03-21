@@ -1,0 +1,11 @@
+:root {
+    --preto: #262626;
+    --branco: #F2F2F2;
+    --cinza-claro: #BFBFBF;
+    --cinza-escuro: #8C8C8C;
+    font-family: 'Roboto', sans-serif;
+}
+*{
+    margin: 0;
+    padding: 0;
+}

@@ -4,8 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tesseract</title>
-    <link rel="stylesheet" href="base.css">
+    <title>Grupo Tesseract</title>
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/cabecalho.css">
+    <link rel="stylesheet" href="assets/css/team.css">
+    <link rel="stylesheet" href="assets/css/title.css">
+    <link rel="stylesheet" href="assets/css/rodape.css">
+    <link rel="stylesheet" href="assets/css/input.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,500;0,700;1,400&display=swap" rel="stylesheet">
 
 </head>
 <body>
@@ -14,59 +21,17 @@
         <img src="" alt="" class="cabecalho__logo">
     </header>
 
-    <main class="main">
-        <section class="users">
-            <div class="container">
-                <ul class="users__list">
-                    <li class="users__user" id="user1">
-                        <a href="" class="users__card">
-                            <img src="" alt="" class="users__img">
-                            <h3 class="users__name"></h3>
-                            <h4 class="users__login"></h4>
-                        </a>
-                    </li>
-                    <li class="users__user" id="user2">
-                        <a href="" class="users__card">
-                            <img src="" alt="" class="users__img">
-                            <h3 class="users__name"></h3>
-                            <h4 class="users__login"></h4>
-                        </a>
-                    </li>
-                    <li class="users__user" id="user3">
-                        <a href="" class="users__card">
-                            <img src="" alt="" class="users__img">
-                            <h3 class="users__name"></h3>
-                            <h4 class="users__login"></h4>
-                        </a>
-                    </li>
-                    <li class="users__user" id="user4">
-                        <a href="" class="users__card">
-                            <img src="" alt="" class="users__img">
-                            <h3 class="users__name"></h3>
-                            <h4 class="users__login"></h4>
-                        </a>
-                    </li>
-                    <li class="users__user" id="user5">
-                        <a href="" class="users__card">
-                            <img src="" alt="" class="users__img">
-                            <h3 class="users__name"></h3>
-                            <h4 class="users__login"></h4>
-                        </a>
-                    </li>
-                    <li class="users__user" id="user6">
-                        <a href="" class="users__card">
-                            <img src="" alt="" class="users__img">
-                            <h3 class="users__name"></h3>
-                            <h4 class="users__login"></h4>
-                        </a>
-                    </li>
-                    <li class="users__user" id="user7">
-                        <a href="" class="users__card">
-                            <img src="" alt="" class="users__img">
-                            <h3 class="users__name"></h3>
-                            <h4 class="users__login"></h4>
-                        </a>
-                    </li>
+    <main class="main" id="main">
+        <h1 class="title">
+            Team
+        </h1>
+        <div class="filter">
+            <input type="text" class="filter__input" id="input" placeholder="Search">
+        </div>
+        <section class="team" id="team">
+            <div class="container" id="container">
+                <ul class="team__list" id="teamList">
+    
                 </ul>
             </div>
         </section>
@@ -79,8 +44,14 @@
     <script src="scripts/controllers/GitController.js"></script>    
     <script src="scripts/models/GitModel.js"></script>
     <script src="scripts/views/GitView.js"></script>
-    <script>        
+    <script>
         let controller = new GhController();
+        let input = document.getElementById('input');
+        
+        input.addEventListener('keyup', (event) =>{
+            const term = event.target.value.toLowerCase();
+            console.log(term);
+        })        
     </script>    
 </body>
 </html>

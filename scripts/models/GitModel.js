@@ -4,13 +4,13 @@ class GhModel {
     }
     openRequest (){
         let request = new XMLHttpRequest;
-        request.open('GET', 'https://api.github.com/orgs/grupotesseract/public_members');
+        request.open('GET', 'https://api.github.com/orgs/grupotesseract/public_members', false);
         request.addEventListener('load', () => {
             let result = JSON.parse(request.responseText);
             if (request.status == 200){
                result.forEach((object) => {
                     let memberRequest = new XMLHttpRequest;
-                    memberRequest.open('GET', `https://api.github.com/users/${object.login}`);
+                    memberRequest.open('GET', `https://api.github.com/users/${object.login}`, false);
                     memberRequest.addEventListener('load', () => {
                         let memberResult = JSON.parse(memberRequest.responseText);
                         if(memberRequest.status == 200){
@@ -23,7 +23,6 @@ class GhModel {
                                 date: new Date(memberResult.created_at)
                             }
                             this.team.push(member);
-                            console.log(this.team);
                         } else{
                             throw new Error(`Request error ${memberRequest.status}: ${memberRequest.statusText}.`);
                         }
@@ -36,4 +35,5 @@ class GhModel {
         })
         request.send();
     }
+
 }

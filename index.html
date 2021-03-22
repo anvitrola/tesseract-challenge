@@ -12,13 +12,14 @@
     <link rel="stylesheet" href="assets/css/rodape.css">
     <link rel="stylesheet" href="assets/css/input.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500&display=swap" rel="stylesheet">
 
 </head>
 <body>
 
     <header class="cabecalho">
-        <img src="" alt="" class="cabecalho__logo">
+        <img src="assets/imgs/logo.jpg" class="cabecalho__logo">
     </header>
 
     <main class="main" id="main">
@@ -47,10 +48,19 @@
     <script>
         let controller = new GhController();
         let input = document.getElementById('input');
+        let teamList = document.getElementById('teamList');
         
         input.addEventListener('keyup', (event) =>{
             const term = event.target.value.toLowerCase();
-            console.log(term);
+            const members = teamList.querySelectorAll('.team__card');
+            Array.from(members).forEach((member) =>{
+                let name = member.childNodes[1].textContent;
+                if(name.toLocaleLowerCase().indexOf(term) != -1){
+                    member.style.visibility="visible"
+                } else{
+                    member.style.visibility="hidden";
+                }
+            })
         })        
     </script>    
 </body>

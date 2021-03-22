@@ -9,11 +9,11 @@ class GhModel {
             let result = JSON.parse(request.responseText);
             if (request.status == 200){
                result.forEach((object) => {
-                    let memberRequest = new XMLHttpRequest;
-                    memberRequest.open('GET', `https://api.github.com/users/${object.login}`, false);
-                    memberRequest.addEventListener('load', () => {
-                        let memberResult = JSON.parse(memberRequest.responseText);
-                        if(memberRequest.status == 200){
+                    let xhr = new XMLHttpRequest;
+                    xhr.open('GET', `https://api.github.com/users/${object.login}`, false);
+                    xhr.addEventListener('load', () => {
+                        let memberResult = JSON.parse(xhr.responseText);
+                        if(xhr.status === 200){
                             let member = {
                                 login: memberResult.login,
                                 name: memberResult.name,
@@ -24,10 +24,10 @@ class GhModel {
                             }
                             this.team.push(member);
                         } else{
-                            throw new Error(`Request error ${memberRequest.status}: ${memberRequest.statusText}.`);
+                            throw new Error(`Request error ${xhr.status}: ${xhr.statusText}.`);
                         }
                     })
-                    memberRequest.send();
+                    xhr.send();
                })
             } else {
                 throw new Error(`Request error ${request.status}: ${request.statusText}.`);

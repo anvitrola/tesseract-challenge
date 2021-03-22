@@ -1,6 +1,10 @@
 .cabecalho{
     background-color: var(--preto);
-    height: 3rem;
+    height: 4.5rem;
     width: 100%;
     margin-bottom: 3%;
+}
+.cabecalho__logo{
+    width: 70px;
+    margin-left: 5%;
 }

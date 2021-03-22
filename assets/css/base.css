@@ -1,9 +1,9 @@
 :root {
-    --preto: #262626;
+    --preto: #000000;
     --branco: #F2F2F2;
-    --cinza-claro: #BFBFBF;
+    --cinza-claro: #dadada;
     --cinza-escuro: #8C8C8C;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Kanit', sans-serif;
 }
 *{
     margin: 0;

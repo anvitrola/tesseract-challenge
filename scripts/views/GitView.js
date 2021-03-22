@@ -15,7 +15,7 @@ class GhView {
             let login = $('h4');
             login.classList.add('team__login');
             img.src = object.photo;
-            login.textContent = `@${object.login}`;
+            login.textContent = object.login;
 
 
             teamList.appendChild(li);

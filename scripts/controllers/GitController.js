@@ -1,12 +1,11 @@
 class GhController {
     constructor (){
-        this.model = new GhModel();
-        this.model.openRequest();
-        this.view = new GhView();
-        this.view.makeLayout(this.model.team);
-        this.filterLogin(this.model.team);
+        this.start()
     }
-    filterLogin(filter, team){
-        
+    async start(){
+        let model = new GhModel();
+        let view = new GhView();
+        await model.request();
+        view.makeLayout(model.team)
     }
 }

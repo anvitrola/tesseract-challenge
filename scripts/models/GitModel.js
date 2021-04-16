@@ -2,38 +2,40 @@ class GhModel {
     constructor () {
         this.team = [];
     }
-    openRequest (){
-        let request = new XMLHttpRequest;
-        request.open('GET', 'https://api.github.com/orgs/grupotesseract/public_members', false);
-        request.addEventListener('load', () => {
-            let result = JSON.parse(request.responseText);
-            if (request.status == 200){
-               result.forEach((object) => {
-                    let xhr = new XMLHttpRequest;
-                    xhr.open('GET', `https://api.github.com/users/${object.login}`, false);
-                    xhr.addEventListener('load', () => {
-                        let memberResult = JSON.parse(xhr.responseText);
-                        if(xhr.status === 200){
-                            let member = {
-                                login: memberResult.login,
-                                name: memberResult.name,
-                                photo: memberResult.avatar_url,
-                                repos: memberResult.public_repos,
-                                followers: memberResult.followers,
-                                date: new Date(memberResult.created_at)
-                            }
-                            this.team.push(member);
-                        } else{
-                            throw new Error(`Request error ${xhr.status}: ${xhr.statusText}.`);
-                        }
-                    })
-                    xhr.send();
-               })
-            } else {
-                throw new Error(`Request error ${request.status}: ${request.statusText}.`);
-            }
-        })
-        request.send();
-    }
+    async request () {
+        try {
+            let response = await fetch("https://api.github.com/orgs/grupotesseract/public_members");
 
+            if(!response.ok) throw new Error("[ERROR]: Response error");
+            
+            let data = await response.json();
+
+            /**Aqui é mais cabível usar o map porque ele retorna um array de Promises e não os dados resolvidos, como o forEach faria**/
+            let team_list = data.map(async (object) => {
+                try {
+                    let res = await fetch(`https://api.github.com/users/${object.login}`)
+                    
+                    if(!res.ok) throw new Error("[ERROR]: Response error");
+
+                    let memberData = await res.json();
+
+                    let member = {
+                        login: memberData.login,
+                        name: memberData.name,
+                        photo: memberData.avatar_url,
+                        repos: memberData.public_repos,
+                        followers: memberData.followers,
+                        date: new Date(memberData.created_at)
+                    }
+                    return member                    
+                } catch (error) {
+                    console.log(error)
+                }
+            })
+            /*Pegando as promises do array e resolvendo-as*/
+            this.team = await Promise.all(team_list);
+        } catch (error) { 
+            console.log(error);
+        }
+    }
 }
